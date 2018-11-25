@@ -17,5 +17,8 @@ db = SQLAlchemy(app)
 ## Views & Models
 from application import views, models
 
+## Authentication
+from application.authentication import configuration
+
 ## Create database
 db.create_all()

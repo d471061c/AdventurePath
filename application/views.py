@@ -7,3 +7,4 @@ def homepage():
     return render_template("index.html")
 
 from application.activities import views
+from application.authentication import views
