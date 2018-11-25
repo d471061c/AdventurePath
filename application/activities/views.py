@@ -16,8 +16,23 @@ def add_activity():
         db.session().add(activity)
         db.session().commit()
     except Exception:
-        redirect(url_for("view_activities"))
+        return redirect(url_for("view_activities"))
     
+    return redirect(url_for("view_activities"))
+
+@app.route("/activities/update/<activity_id>")
+def update_activity():
+    activity = Activity.query.get(activity_id)
+
+    name = request.form.get("name")
+    activity.name = name
+
+    try:
+        db.session().add(activity)
+        db.session().commit()
+    except Exception:
+        return redirect(url_for("view_activities"))
+
     return redirect(url_for("view_activities"))
 
 @app.route("/activities/delete/<activity_id>/", methods=["POST"])
