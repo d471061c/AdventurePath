@@ -20,7 +20,7 @@ def add_activity():
     
     return redirect(url_for("view_activities"))
 
-@app.route("/activities/update/<activity_id>")
+@app.route("/activities/update/<activity_id>", methods=["POST"])
 def update_activity():
     activity = Activity.query.get(activity_id)
 
