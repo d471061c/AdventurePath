@@ -1,6 +1,9 @@
 from flask import render_template
+
 from application import app
 
 @app.route("/")
-def index():
+def homepage():
     return render_template("index.html")
+
+from application.activities import views
