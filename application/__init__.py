@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
@@ -9,8 +11,11 @@ app = Flask(__name__,
             template_folder=RESOURCES + "/templates")
 
 ## Configure Database
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///{}/adventurepath.db".format(RESOURCES)
-app.config["SQLALCHEMY_ECHO"] = True
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///{}/adventurepath.db".format(RESOURCES)
+    app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
