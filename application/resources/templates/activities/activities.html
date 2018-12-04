@@ -2,26 +2,29 @@
 
 {% block body %}
     <!-- Activity form -->
-    <form action="{{ url_for('add_activity')}}" method="post">
-        {{ form.name.label }}
-        {{ form.name }}
-        <input type="submit" value="Create activity"/>
+    <form class="form" action="{{ url_for('add_activity')}}" method="post">
+        <div class="input-group mb-3 col-xs-2">
+            <input name="name" type="text" class="form-control" placeholder="Activity name...">
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="button">Create activity</button>
+            </div>
+        </div>
     </form>
 
     <!-- Available activities -->
-    <table>
+    <table class="table">
         <tr>
-            <th>ID</th>
-            <th>Activity Name</th>
-            <th></th>
+            <th scope="col">ID</th>
+            <th scope="col">Activity Name</th>
+            <th scope="col">Edit</th>
         </tr>
         {% for activity in activities %}
             <tr>
-                <td>{{ activity.id }}</td>
-                <td>{{ activity.name }}</td>
-                <td>
+                <td scope="row">{{ activity.id }}</td>
+                <td scope="row">{{ activity.name }}</td>
+                <td scope="row">
                     <form action="{{ url_for('delete_activity', activity_id=activity.id) }}" method="post" >
-                        <input type="submit" value="DELETE">
+                        <input class="btn btn-danger" type="submit" value="DELETE">
                     </form>
                 </td>
             </tr>
